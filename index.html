@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vutya — Python Developer</title>
+    <title>Vutya — Senior Python Developer</title>
     <style>
         :root {
             --bg: #09090b;
@@ -12,7 +12,7 @@
             --fg-dim: #52525b;
             --accent: #7dd3fc;
             --accent-dim: #0ea5e9;
-            --accent-glow: rgba(125, 211, 252, 0.08);
+            --accent-glow: rgba(125, 211, 252, 0.06);
             --border: #18181b;
             --surface: #0c0c0e;
         }
@@ -21,10 +21,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
@@ -37,26 +33,24 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            padding: 4rem 2rem;
             position: relative;
-            overflow-x: hidden;
         }
 
         body::before {
             content: "";
             position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 50%);
+            top: -30%;
+            left: -30%;
+            width: 160%;
+            height: 160%;
+            background: radial-gradient(circle at 50% 30%, var(--accent-glow) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
 
         main {
-            max-width: 540px;
+            max-width: 580px;
             width: 100%;
             position: relative;
             z-index: 1;
@@ -67,7 +61,7 @@
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 600;
             color: var(--fg-bright);
             letter-spacing: -0.03em;
@@ -82,26 +76,36 @@
 
         .role {
             margin-top: 1.25rem;
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--accent);
             font-weight: 500;
         }
 
         .experience {
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
             font-size: 0.85rem;
             color: var(--fg-dim);
             font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
         }
 
         section {
-            margin: 1.75rem 0;
-            padding: 1.25rem 0;
+            margin: 2rem 0;
+            padding-top: 2rem;
             border-top: 1px solid var(--border);
         }
 
         section:first-of-type {
             border-top: none;
+            padding-top: 0;
+        }
+
+        h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--fg-dim);
+            margin-bottom: 1.25rem;
+            font-weight: 600;
         }
 
         .about p {
@@ -112,39 +116,55 @@
             margin-bottom: 0;
         }
 
-        .career h2,
-        .stack h2 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--fg-dim);
-            margin-bottom: 1rem;
-            font-weight: 600;
+        .highlight {
+            color: var(--fg-bright);
+            font-weight: 500;
         }
 
         .timeline {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
         .job {
             display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .job-header {
+            display: flex;
             align-items: baseline;
-            gap: 0.75rem;
-            font-size: 0.9rem;
+            justify-content: space-between;
+            gap: 1rem;
         }
 
         .job .company {
             color: var(--fg-bright);
             font-weight: 500;
-            min-width: 120px;
+            font-size: 0.95rem;
         }
 
         .job .period {
             color: var(--fg-dim);
             font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .job .title {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .job .desc {
+            color: var(--fg-dim);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-top: 0.2rem;
         }
 
         .tags {
@@ -162,6 +182,7 @@
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
             transition: all 0.2s ease;
+            cursor: default;
         }
 
         .tag:hover {
@@ -170,10 +191,10 @@
         }
 
         .links {
-            margin-top: 2rem;
             display: flex;
             gap: 1.5rem;
             flex-wrap: wrap;
+            margin-top: 0.5rem;
         }
 
         .links a {
@@ -205,7 +226,7 @@
         }
 
         footer {
-            margin-top: 3rem;
+            margin-top: 4rem;
             font-size: 0.75rem;
             color: var(--fg-dim);
             text-align: center;
@@ -213,14 +234,11 @@
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.7rem;
+                font-size: 1.9rem;
             }
-            .job {
+            .job-header {
                 flex-direction: column;
-                gap: 0.25rem;
-            }
-            .job .company {
-                min-width: auto;
+                gap: 0.1rem;
             }
             .links {
                 flex-direction: column;
@@ -234,29 +252,76 @@
         <header>
             <h1>Vutya</h1>
             <div class="meta">Viktor Zhirnov — Moscow, UTC+3</div>
-            <div class="role">Python Developer</div>
+            <div class="role">Senior Python Developer | Lead Python Guild</div>
             <div class="experience" id="experience"></div>
         </header>
 
         <section class="about">
-            <p>Backend development with a focus on data pipelines and infrastructure automation. Currently building CDC-based audit systems with Debezium, Kafka, and PostgreSQL.</p>
-            <p>Interested in AI agents, developer tooling, and systems that reduce manual work.</p>
+            <h2>About</h2>
+            <p>
+                Backend developer with a focus on <span class="highlight">data pipelines</span>, 
+                <span class="highlight">highload systems</span>, and <span class="highlight">infrastructure automation</span>. 
+                Built and led teams in enterprise and startup environments.
+            </p>
+            <p>
+                Currently designing CDC-based audit systems at AstraZeneca. 
+                Previously led a team of 4 at MTS, shipped an environmental monitoring MVP (ECO), 
+                and built highload services at SberLogistics.
+            </p>
+            <p>
+                Passionate about developer experience, clean architecture, and systems that reduce manual work. 
+                Fan of cats, mechanical keyboards, and hardware.
+            </p>
         </section>
 
         <section class="career">
             <h2>Career</h2>
             <div class="timeline">
                 <div class="job">
-                    <span class="company">AstraZeneca</span>
-                    <span class="period">2024 — present</span>
+                    <div class="job-header">
+                        <span class="company">AstraZeneca</span>
+                        <span class="period">04.2025 — now</span>
+                    </div>
+                    <div class="title">Senior Python Developer</div>
+                    <div class="desc">
+                        Built from scratch a CMS for medical media (4 microservices). 
+                        Introduced Docker, uv, pre-commit, Make, and CI/CD with pytest. 
+                        Reached 86% test coverage. TTM: 4 weeks.
+                    </div>
                 </div>
                 <div class="job">
-                    <span class="company">MTS</span>
-                    <span class="period">2022 — 2024</span>
+                    <div class="job-header">
+                        <span class="company">MTS Digital</span>
+                        <span class="period">04.2023 — 04.2025</span>
+                    </div>
+                    <div class="title">TeamLead / Senior Python Developer</div>
+                    <div class="desc">
+                        Led a team of 4. Shipped ECO — environmental monitoring MVP (4 microservices from a distributed monolith). 
+                        Optimized notification service and math models. Introduced gitflow, cross-review, test coverage (70%).
+                    </div>
                 </div>
                 <div class="job">
-                    <span class="company">Sber</span>
-                    <span class="period">2020 — 2022</span>
+                    <div class="job-header">
+                        <span class="company">SberLogistics</span>
+                        <span class="period">03.2022 — 04.2023</span>
+                    </div>
+                    <div class="title">Python Developer</div>
+                    <div class="desc">
+                        Built a chat platform PoC and 2 highload async services: PIN-code service 
+                        and reporting engine. The latter reduced company settlement costs significantly. 
+                        TTM to production: 4 days.
+                    </div>
+                </div>
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">South Harbour</span>
+                        <span class="period">07.2020 — 03.2022</span>
+                    </div>
+                    <div class="title">Python Developer</div>
+                    <div class="desc">
+                        Developed a crypto/fiat exchange system, currency conversion module, and rate pushers. 
+                        Built an accounting API solo, saving ~30 hours/month for the accounting team.
+                    </div>
                 </div>
             </div>
         </section>
@@ -273,15 +338,22 @@
                 <span class="tag">Docker</span>
                 <span class="tag">Git</span>
                 <span class="tag">Kafka</span>
-                <span class="tag">Debezium</span>
+                <span class="tag">Airflow</span>
+                <span class="tag">Kubernetes</span>
+                <span class="tag">ClickHouse</span>
+                <span class="tag">Redis</span>
+                <span class="tag">RabbitMQ</span>
             </div>
         </section>
 
-        <nav class="links">
-            <a href="https://github.com/Mac3g0d" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://t.me/themacegod" target="_blank" rel="noopener">Telegram</a>
-            <a href="mailto:viktorzhirnov07@gmail.com">Email</a>
-        </nav>
+        <section class="contact">
+            <h2>Contact</h2>
+            <nav class="links">
+                <a href="https://github.com/Mac3g0d" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://t.me/themacegod" target="_blank" rel="noopener">Telegram</a>
+                <a href="mailto:viktorzhirnov07@gmail.com">Email</a>
+            </nav>
+        </section>
 
         <footer>
             &copy; <span id="year"></span>
