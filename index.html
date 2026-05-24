@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vutya — Python Developer</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --fg: #c9c9c9;
+            --fg-dim: #666;
+            --accent: #7aa2f7;
+            --accent-dim: #565f89;
+            --border: #1f1f1f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        main {
+            max-width: 520px;
+            width: 100%;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        .handle {
+            color: var(--fg-dim);
+            font-size: 0.95rem;
+            font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+        }
+
+        .role {
+            margin-top: 1.5rem;
+            font-size: 1.05rem;
+            color: var(--accent);
+        }
+
+        .about {
+            margin: 2rem 0;
+            padding: 1.25rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about p {
+            margin-bottom: 0.75rem;
+        }
+
+        .about p:last-child {
+            margin-bottom: 0;
+        }
+
+        .stack {
+            margin: 2rem 0;
+        }
+
+        .stack h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--fg-dim);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+            color: var(--accent-dim);
+            background: rgba(122, 162, 247, 0.06);
+            border: 1px solid var(--border);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .links a {
+            color: var(--fg-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .links a::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.2s ease;
+        }
+
+        .links a:hover {
+            color: var(--accent);
+        }
+
+        .links a:hover::after {
+            width: 100%;
+        }
+
+        footer {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: var(--fg-dim);
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            .links {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Vutya</h1>
+            <div class="handle">Viktor Zhirnov — Moscow, UTC+3</div>
+            <div class="role">Python Developer</div>
+        </header>
+
+        <section class="about">
+            <p>Backend development with a focus on data pipelines and infrastructure automation. Currently building CDC-based audit systems with Debezium, Kafka, and PostgreSQL.</p>
+            <p>Interested in AI agents, developer tooling, and systems that reduce manual work.</p>
+        </section>
+
+        <section class="stack">
+            <h2>Stack</h2>
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Kafka</span>
+                <span class="tag">Debezium</span>
+                <span class="tag">SQLAlchemy</span>
+                <span class="tag">Alembic</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Docker</span>
+            </div>
+        </section>
+
+        <nav class="links">
+            <a href="https://github.com/Mac3g0d" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://t.me/wootya" target="_blank" rel="noopener">Telegram</a>
+            <a href="mailto:viktorzhirnov07@gmail.com">Email</a>
+        </nav>
+
+        <footer>
+            &copy; 2026
+        </footer>
+    </main>
+</body>
+</html>
