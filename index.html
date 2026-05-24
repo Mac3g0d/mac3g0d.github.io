@@ -6,12 +6,15 @@
     <title>Vutya — Python Developer</title>
     <style>
         :root {
-            --bg: #0a0a0a;
-            --fg: #c9c9c9;
-            --fg-dim: #666;
-            --accent: #7aa2f7;
-            --accent-dim: #565f89;
-            --border: #1f1f1f;
+            --bg: #09090b;
+            --fg: #a1a1aa;
+            --fg-bright: #e4e4e7;
+            --fg-dim: #52525b;
+            --accent: #7dd3fc;
+            --accent-dim: #0ea5e9;
+            --accent-glow: rgba(125, 211, 252, 0.08);
+            --border: #18181b;
+            --surface: #0c0c0e;
         }
 
         * {
@@ -36,11 +39,27 @@
             align-items: center;
             justify-content: center;
             padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         main {
-            max-width: 520px;
+            max-width: 540px;
             width: 100%;
+            position: relative;
+            z-index: 1;
         }
 
         header {
@@ -48,30 +67,41 @@
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 600;
-            color: #e0e0e0;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.25rem;
+            color: var(--fg-bright);
+            letter-spacing: -0.03em;
+            margin-bottom: 0.3rem;
         }
 
-        .handle {
+        .meta {
             color: var(--fg-dim);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
         }
 
         .role {
-            margin-top: 1.5rem;
-            font-size: 1.05rem;
+            margin-top: 1.25rem;
+            font-size: 1rem;
             color: var(--accent);
+            font-weight: 500;
         }
 
-        .about {
-            margin: 2rem 0;
+        .experience {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--fg-dim);
+            font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+        }
+
+        section {
+            margin: 1.75rem 0;
             padding: 1.25rem 0;
             border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+        }
+
+        section:first-of-type {
+            border-top: none;
         }
 
         .about p {
@@ -82,17 +112,39 @@
             margin-bottom: 0;
         }
 
-        .stack {
-            margin: 2rem 0;
+        .career h2,
+        .stack h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--fg-dim);
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
-        .stack h2 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--fg-dim);
-            margin-bottom: 0.75rem;
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .job {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .job .company {
+            color: var(--fg-bright);
             font-weight: 500;
+            min-width: 120px;
+        }
+
+        .job .period {
+            color: var(--fg-dim);
+            font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+            font-size: 0.8rem;
         }
 
         .tags {
@@ -102,19 +154,26 @@
         }
 
         .tag {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
-            color: var(--accent-dim);
-            background: rgba(122, 162, 247, 0.06);
+            color: var(--accent);
+            background: var(--surface);
             border: 1px solid var(--border);
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover {
+            border-color: var(--accent-dim);
+            background: var(--accent-glow);
         }
 
         .links {
             margin-top: 2rem;
             display: flex;
             gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .links a {
@@ -123,12 +182,13 @@
             font-size: 0.9rem;
             transition: color 0.2s ease;
             position: relative;
+            padding-bottom: 2px;
         }
 
         .links a::after {
             content: "";
             position: absolute;
-            bottom: -2px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 1px;
@@ -146,13 +206,21 @@
 
         footer {
             margin-top: 3rem;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--fg-dim);
+            text-align: center;
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.6rem;
+                font-size: 1.7rem;
+            }
+            .job {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            .job .company {
+                min-width: auto;
             }
             .links {
                 flex-direction: column;
@@ -165,8 +233,9 @@
     <main>
         <header>
             <h1>Vutya</h1>
-            <div class="handle">Viktor Zhirnov — Moscow, UTC+3</div>
+            <div class="meta">Viktor Zhirnov — Moscow, UTC+3</div>
             <div class="role">Python Developer</div>
+            <div class="experience" id="experience"></div>
         </header>
 
         <section class="about">
@@ -174,29 +243,69 @@
             <p>Interested in AI agents, developer tooling, and systems that reduce manual work.</p>
         </section>
 
+        <section class="career">
+            <h2>Career</h2>
+            <div class="timeline">
+                <div class="job">
+                    <span class="company">AstraZeneca</span>
+                    <span class="period">2024 — present</span>
+                </div>
+                <div class="job">
+                    <span class="company">MTS</span>
+                    <span class="period">2022 — 2024</span>
+                </div>
+                <div class="job">
+                    <span class="company">Sber</span>
+                    <span class="period">2020 — 2022</span>
+                </div>
+            </div>
+        </section>
+
         <section class="stack">
             <h2>Stack</h2>
             <div class="tags">
                 <span class="tag">Python</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Litestar</span>
+                <span class="tag">SQLAlchemy</span>
                 <span class="tag">PostgreSQL</span>
+                <span class="tag">pytest</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Git</span>
                 <span class="tag">Kafka</span>
                 <span class="tag">Debezium</span>
-                <span class="tag">SQLAlchemy</span>
-                <span class="tag">Alembic</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">Docker</span>
             </div>
         </section>
 
         <nav class="links">
             <a href="https://github.com/Mac3g0d" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://t.me/wootya" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://t.me/themacegod" target="_blank" rel="noopener">Telegram</a>
             <a href="mailto:viktorzhirnov07@gmail.com">Email</a>
         </nav>
 
         <footer>
-            &copy; 2026
+            &copy; <span id="year"></span>
         </footer>
     </main>
+
+    <script>
+        const start = new Date(2020, 6, 1);
+        const now = new Date();
+
+        let years = now.getFullYear() - start.getFullYear();
+        let months = now.getMonth() - start.getMonth();
+
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+
+        const parts = [];
+        if (years > 0) parts.push(years + " year" + (years > 1 ? "s" : ""));
+        if (months > 0) parts.push(months + " month" + (months > 1 ? "s" : ""));
+
+        document.getElementById("experience").textContent = parts.join(" ") + " of Python";
+        document.getElementById("year").textContent = now.getFullYear();
+    </script>
 </body>
 </html>
